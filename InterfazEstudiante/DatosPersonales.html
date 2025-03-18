@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Datos Estudiantes</title>
+  </head>
+  <body>
+   <style>
+    body{
+        background-color: rgb(243, 244, 247);
+         color: rgb(210, 182, 235);
+    }
+    table thead{
+        background-color: rgb(13, 245, 245);
+        color: rgb(71, 69, 69);
+    }
+   </style>
+   <div class="container mt-3 shadow-lg p-3 mb-3 bg-body rounded">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Matricula</th>
+                <th>Carrera</th>
+            </tr>
+        </thead>
+        <tbody nombre = "data"> </tbody>
+        
+    </table>
+    
+
+   </div>
+   <div class="center">
+    <a href="ListaMascotas.html">Ver lista de perros</a>
+</div>
+    
+    <script>
+        let url = 'https://localhost:7184/api/ControllerEstudiante/DatosPersonales Estudiantes'
+        fetch(url)
+           .then(res => res.json())
+           .then(data => mostrar(data))
+           .catch(Error => console.log(Error));
+           
+           const mostrar = (data) =>{
+               console.log(data);
+               let body = '';
+               for (let i = 0; i< data.length; i++) {
+                body += `<tr> <td>${data[i].nombre }</td><td>${data[i].matricula }</td><td>${data[i].carrera }</td></tr> `;
+               }
+               document.querySelector('[nombre = "data"]').innerHTML = body
+
+
+           }
+    </script>
+   
+  </body>
+</html>
